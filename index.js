@@ -1,6 +1,12 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 
+//add employee type const requires from lib in local
+const Employee = require("./lib/Employee");
+const Manager = require("./lib/Manager");
+const Engineer = require("./lib/Engineer");
+const Intern = require("./lib/Intern");
+
 //NEED TO ADD ROLE FOR ALL TYPES ???
 //unbrella question
 
