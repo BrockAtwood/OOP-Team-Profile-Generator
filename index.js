@@ -1,6 +1,8 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 
+//test comment
+
 //add employee type const requires from lib in local
 const Employee = require("./lib/Employee");
 const Manager = require("./lib/Manager");
