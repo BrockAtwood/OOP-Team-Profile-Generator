@@ -8,9 +8,10 @@ const Employee = require("./lib/Employee");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
+const htmlGENERATOR = require("./lib/htmlGENERATOR");
 
 //NEED TO ADD ROLE FOR ALL TYPES ???
-//unbrella question check with Ben Monday
+//umbrella question check with Ben Monday
 
 const kindOfEmployee = [
   {
@@ -135,20 +136,20 @@ const internQuestions = [
 //adding boilerplate stuff from previous homework for outlining
 
 // TODO: Create a function to write GENERATED-README file
-function writeToFile(fileName, data) {
-  fs.writeFile("GENERATED-README.md", data, (err) => {
-    err
-      ? console.log(err)
-      : console.log("GENERATED-README.md file was created and written!");
-  });
-}
+// function writeToFile(fileName, data) {
+//   fs.writeFile("GENERATED-README.md", data, (err) => {
+//     err
+//       ? console.log(err)
+//       : console.log("GENERATED-README.md file was created and written!");
+//   });
+// }
 
-// TODO: Create a function to initialize app
-function init() {
-  return inquirer.prompt(questions).then((data) => {
-    writeToFile("GENERATED-README.md", generateMarkdown(data));
-  });
-}
+// // TODO: Create a function to initialize app
+// function init() {
+//   return inquirer.prompt(questions).then((data) => {
+//     writeToFile("GENERATED-README.md", generateMarkdown(data));
+//   });
+// }
 
-// Function call to initialize app
-init();
+// // Function call to initialize app
+// init();
