@@ -60,19 +60,19 @@ const managerQuestions = [
   {
     type: "input",
     name: "id",
-    message: "What is your Manager's ID?",
+    message: "What is your Team Manager's ID?",
   },
 
   {
     type: "input",
     name: "email",
-    message: "What is your Manager's Email?",
+    message: "What is your Team Manager's Email?",
   },
 
   {
     type: "input",
     name: "officeNumber",
-    message: "What is your Manager's Office Number?",
+    message: "What is your Team Manager's Office Number?",
   },
 ];
 

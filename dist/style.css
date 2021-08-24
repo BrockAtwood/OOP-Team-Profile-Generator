@@ -1,0 +1,28 @@
+.cardarea {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.header {
+  background-color: red;
+  color: whitesmoke;
+  text-align: center;
+  padding-bottom: 30px;
+  padding-top: 30px;
+}
+
+.card-body {
+  background-color: blue;
+}
+
+.card-title,
+.card-text {
+  color: whitesmoke;
+}
+
+.card {
+  padding: 30px;
+}
