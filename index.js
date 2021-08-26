@@ -10,7 +10,7 @@ const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 
 //where the responses are sent and rendered
-const htmlGENERATOR = require("./lib/htmlGENERATOR");
+// const htmlGENERATOR = require("./lib/htmlGENERATOR");
 
 //NEED TO ADD ROLE FOR ALL TYPES ???
 //umbrella question check with Ben Monday
@@ -18,7 +18,11 @@ const htmlGENERATOR = require("./lib/htmlGENERATOR");
 //no enployee questions
 
 //manager questions
+//generating an html where responses will go
+// const finalGeneratedHtml = "./dist/GENERATED.html";
 const employeeQuestionsArray = [];
+let generatedHTML = "";
+let spec;
 
 //starter prompt
 inquirer
@@ -202,34 +206,58 @@ function internQuestions() {
     .catch((error) => console.log(error));
 }
 
-// function teamMemberAnswer(response) {
-//   if (response === "Intern") {
-//     internQuestions();
-//   } else if (response === "Manager") {
-//     managerQuestions();
-//   } else if (response === "Engineer") {
-//     engineerQuestions();
-//   } else if (response === "I do not want to add anymore Team Members") {
-//     console.log("Done");
-//   }
-// }
+function teamMemberAnswer(responses) {
+  if (responses === "Intern") {
+    internQuestions();
+  } else if (responses === "Manager") {
+    managerQuestions();
+  } else if (responses === "Engineer") {
+    engineerQuestions();
+  } else if (responses === "I do not want to add anymore Team Members") {
+    console.log(employeeQuestionsArray);
+    employeeQuestionsArray.map((result) => {
+      console.log(result);
+      if (result.getRole() === "Manager") {
+        spec = result.getofficeNumber();
+      } else if (result.getRole() === "Engineer") {
+        spec = result.getGitHub();
+      } else {
+        spec = result.getSchool();
+      }
+      generatedHTML += `
+      <div class="card-body">
+          <h5 class="card-title">${result.getName()}</h5>
+          <p class="card-text">${result.getRole()}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">ID: ${result.getId()}</li>
+          <li class="list-group-item">Email: ${result.getEmail()}</li>
+          <li class="list-group-item">OfficeNumber: ${spec}</li>
+        </ul>
+      </div>
+      `;
+    });
+    console.log(generatedHTML);
+  }
+}
+
 //adding boilerplate stuff from previous homework for outlining
 
 // TODO: Create a function to write GENERATED-README file
 // function writeToFile(fileName, data) {
-//   fs.writeFile("GENERATED-README.md", data, (err) => {
+//   fs.writeFile(finalGeneratedHtml, data, (err) => {
 //     err
 //       ? console.log(err)
-//       : console.log("GENERATED-README.md file was created and written!");
+//       : console.log("index.html file was created and written!");
 //   });
 // }
 
-// // TODO: Create a function to initialize app
+// // // TODO: Create a function to initialize app
 // function init() {
-//   return inquirer.prompt(questions).then((data) => {
-//     writeToFile("GENERATED-README.md", generateMarkdown(data));
+//   return inquirer.prompt().then((data) => {
+//     writeToFile(finalGeneratedHtml, generateHTML(data));
 //   });
 // }
 
 // // Function call to initialize app
-// init()
+// init();
