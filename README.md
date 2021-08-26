@@ -34,9 +34,10 @@ THEN I exit the application, and the HTML is generated
 ```
 
 ## Walk through Video Link:
-
+https://drive.google.com/file/d/1YJ_m_Yg0dKnnJwehLfsy9P5aePAwc8GG/view?usp=sharing
 
 ## Sample HTML file generated using the application
+<img width="1440" alt="Screen Shot 2021-08-26 at 4 02 24 AM" src="https://user-images.githubusercontent.com/87385012/130943997-0a1c627b-99c9-479d-b03f-ece09bb3a53c.png">
 
 
 ## URL of GitHub repository
