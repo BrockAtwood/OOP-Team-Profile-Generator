@@ -40,29 +40,29 @@ describe("Engineer", () => {
   describe("getName()", () => {
     it("should return this.name value", () => {
       const gotName = new Engineer("brock", 1, "b@yahoo.com", "BrockAtwood");
-      const testingName = gotName.name;
+      const testingName = gotName.getName();
       expect(testingName).toEqual("brock");
     });
   });
   describe("getId()", () => {
     it("should return this.id value", () => {
       const gotId = new Engineer("brock", 1, "b@yahoo.com", "BrockAtwood");
-      const testingId = gotId.id;
+      const testingId = gotId.getId();
       expect(testingId).toEqual(1);
     });
   });
   describe("getEmail()", () => {
     it("should return this.email value", () => {
       const gotEmail = new Engineer("brock", 1, "b@yahoo.com", "BrockAtwood");
-      const testingEmail = gotEmail.email;
+      const testingEmail = gotEmail.getEmail();
       expect(testingEmail).toEqual("b@yahoo.com");
     });
   });
   describe("getGitHub()", () => {
     it("should return this.GitHub value", () => {
       const gotGitHub = new Engineer("brock", 1, "b@yahoo.com", "BrockAtwood");
-      const testingGitHub = gotGitHub.GitHub;
-      expect(testingGitHub).toEqual("BrockAtwood");
+      const testingGitHub = gotGitHub.getGitHub();
+      expect(testingGitHub).toEqual("https://github.com/BrockAtwood");
     });
   });
   describe("getRole()", () => {

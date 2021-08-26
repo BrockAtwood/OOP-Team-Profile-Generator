@@ -41,28 +41,28 @@ describe("Manager", () => {
   describe("getName()", () => {
     it("should return this.name value", () => {
       const gotName = new Manager("brock", 1, "b@yahoo.com", 2);
-      const testingName = gotName.name;
+      const testingName = gotName.getName();
       expect(testingName).toEqual("brock");
     });
   });
   describe("getId()", () => {
     it("should return this.id value", () => {
       const gotId = new Manager("brock", 1, "b@yahoo.com", 2);
-      const testingId = gotId.id;
+      const testingId = gotId.getId();
       expect(testingId).toEqual(1);
     });
   });
   describe("getEmail()", () => {
     it("should return this.email value", () => {
       const gotEmail = new Manager("brock", 1, "b@yahoo.com", 2);
-      const testingEmail = gotEmail.email;
+      const testingEmail = gotEmail.getEmail();
       expect(testingEmail).toEqual("b@yahoo.com");
     });
   });
   describe("getofficeNumber()", () => {
     it("should return this.officeNumber value", () => {
       const gotofficeNumber = new Manager("brock", 1, "b@yahoo.com", 2);
-      const testingofficeNumber = gotofficeNumber.officeNumber;
+      const testingofficeNumber = gotofficeNumber.getofficeNumber();
       expect(testingofficeNumber).toEqual(2);
     });
   });

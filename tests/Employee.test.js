@@ -32,21 +32,21 @@ describe("Employee", () => {
   describe("getName()", () => {
     it("should return this.name value", () => {
       const gotName = new Employee("brock", 1, "b@yahoo.com");
-      const testingName = gotName.name;
+      const testingName = gotName.getName();
       expect(testingName).toEqual("brock");
     });
   });
   describe("getId()", () => {
     it("should return this.id value", () => {
       const gotId = new Employee("brock", 1, "b@yahoo.com");
-      const testingId = gotId.id;
+      const testingId = gotId.getId();
       expect(testingId).toEqual(1);
     });
   });
   describe("getEmail()", () => {
     it("should return this.email value", () => {
       const gotEmail = new Employee("brock", 1, "b@yahoo.com");
-      const testingEmail = gotEmail.email;
+      const testingEmail = gotEmail.getEmail();
       expect(testingEmail).toEqual("b@yahoo.com");
     });
   });
