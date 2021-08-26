@@ -8,131 +8,211 @@ const Employee = require("./lib/Employee");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
+
+//where the responses are sent and rendered
 const htmlGENERATOR = require("./lib/htmlGENERATOR");
 
 //NEED TO ADD ROLE FOR ALL TYPES ???
 //umbrella question check with Ben Monday
 
-const kindOfEmployee = [
-  {
-    type: "input",
-    name: "teamMember",
-    message: "Which type of Team Member would you like to add next?",
-    choices: [
-      "Manager",
-      "Engineer",
-      "Intern",
-      "I do not want to add anymore Team Members",
-    ],
-  },
-];
-
-//employee questions
-
-const employeeQuestions = [
-  {
-    type: "input",
-    name: "name",
-    message: "What is your Employee's Name?",
-  },
-
-  {
-    type: "input",
-    name: "id",
-    message: "What is your Employee's ID?",
-  },
-
-  {
-    type: "input",
-    name: "email",
-    message: "What is your Employee's Email?",
-  },
-];
+//no enployee questions
 
 //manager questions
+const employeeQuestionsArray = [];
 
-const managerQuestions = [
-  {
-    type: "input",
-    name: "name",
-    message: "What is your Manager's Name?",
-  },
+//starter prompt
+inquirer
+  .prompt([
+    {
+      type: "list",
+      name: "teamMember",
+      message: "Which type of Team Member would you like to add next?",
+      choices: [
+        "Manager",
+        "Engineer",
+        "Intern",
+        "I do not want to add anymore Team Members",
+      ],
+    },
+  ])
+  .then((response) =>
+    response.choices === "Intern"
+      ? internQuestions()
+      : response.teamMember === "Manager"
+      ? managerQuestions()
+      : response.teamMember === "Engineer"
+      ? engineerQuestions()
+      : response.teamMember === "I do not want to add anymore Team Members"
+      ? htmlGENERATOR()
+      : console.log("You're Done!")
+  );
 
-  {
-    type: "input",
-    name: "id",
-    message: "What is your Team Manager's ID?",
-  },
+function managerQuestions() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "managerName",
+        message: "What is your Manager's Name?",
+      },
 
-  {
-    type: "input",
-    name: "email",
-    message: "What is your Team Manager's Email?",
-  },
+      {
+        type: "input",
+        name: "managerId",
+        message: "What is your Team Manager's ID?",
+      },
 
-  {
-    type: "input",
-    name: "officeNumber",
-    message: "What is your Team Manager's Office Number?",
-  },
-];
+      {
+        type: "input",
+        name: "managerEmail",
+        message: "What is your Team Manager's Email?",
+      },
 
+      {
+        type: "input",
+        name: "managerofficeNumber",
+        message: "What is your Team Manager's Office Number?",
+      },
+      {
+        type: "list",
+        name: "teamMember",
+        message: "Which type of Team Member would you like to add next?",
+        choices: [
+          "Manager",
+          "Engineer",
+          "Intern",
+          "I do not want to add anymore Team Members",
+        ],
+      },
+    ])
+    .then((responses) => {
+      const manager = new Manager(
+        responses.managerName,
+        responses.managerId,
+        responses.managerEmail,
+        responses.managerofficeNumber
+      );
+      employeeQuestionsArray.push(manager);
+      teamMemberAnswer(responses.teamMember);
+    })
+    .catch((error) => console.log(error));
+}
 //engineer questions
 
-const engineerQuestions = [
-  {
-    type: "input",
-    name: "name",
-    message: "What is your Engineer's name?",
-  },
+function engineerQuestions() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "EngineerName",
+        message: "What is your Engineer's name?",
+      },
 
-  {
-    type: "input",
-    name: "id",
-    message: "What is your Engineer's ID?",
-  },
+      {
+        type: "input",
+        name: "engineerId",
+        message: "What is your Engineer's ID?",
+      },
 
-  {
-    type: "input",
-    name: "email",
-    message: "What is your Engineer's Email?",
-  },
+      {
+        type: "input",
+        name: "engineerEmail",
+        message: "What is your Engineer's Email?",
+      },
 
-  {
-    type: "input",
-    name: "github",
-    message: "What is your Engineer's GitHib Username?",
-  },
-];
-
+      {
+        type: "input",
+        name: "engineerGitHub",
+        message: "What is your Engineer's GitHib Username?",
+      },
+      {
+        type: "list",
+        name: "teamMember",
+        message: "Which type of Team Member would you like to add next?",
+        choices: [
+          "Manager",
+          "Engineer",
+          "Intern",
+          "I do not want to add anymore Team Members",
+        ],
+      },
+    ])
+    .then((responses) => {
+      const engineer = new Engineer(
+        responses.engineerName,
+        responses.engineerId,
+        responses.engineerEmail,
+        responses.engineerGitHub
+      );
+      employeeQuestionsArray.push(engineer);
+      teamMemberAnswer(responses.teamMember);
+    })
+    .catch((error) => console.log(error));
+}
 //intern questions
 
-const internQuestions = [
-  {
-    type: "input",
-    name: "name",
-    message: "What is your Intern's Name?",
-  },
+function internQuestions() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "internName",
+        message: "What is your Intern's Name?",
+      },
 
-  {
-    type: "input",
-    name: "id",
-    message: "What is your Intern's ID?",
-  },
+      {
+        type: "input",
+        name: "internId",
+        message: "What is your Intern's ID?",
+      },
 
-  {
-    type: "input",
-    name: "email",
-    message: "What is your Intern's Email?",
-  },
+      {
+        type: "input",
+        name: "internEmail",
+        message: "What is your Intern's Email?",
+      },
 
-  {
-    type: "input",
-    name: "school",
-    message: "What is your Intern's school?",
-  },
-];
+      {
+        type: "input",
+        name: "internSchool",
+        message: "What is your Intern's school?",
+      },
+      {
+        type: "list",
+        name: "teamMember",
+        message: "Which type of Team Member would you like to add next?",
+        choices: [
+          "Manager",
+          "Engineer",
+          "Intern",
+          "I do not want to add anymore Team Members",
+        ],
+      },
+    ])
+    .then((responses) => {
+      const intern = new Intern(
+        responses.internName,
+        responses.internId,
+        responses.internEmail,
+        responses.internSchool
+      );
+      employeeQuestionsArray.push(intern);
+      teamMemberAnswer(responses.teamMember);
+    })
+    .catch((error) => console.log(error));
+}
 
+// function teamMemberAnswer(response) {
+//   if (response === "Intern") {
+//     internQuestions();
+//   } else if (response === "Manager") {
+//     managerQuestions();
+//   } else if (response === "Engineer") {
+//     engineerQuestions();
+//   } else if (response === "I do not want to add anymore Team Members") {
+//     console.log("Done");
+//   }
+// }
 //adding boilerplate stuff from previous homework for outlining
 
 // TODO: Create a function to write GENERATED-README file
@@ -152,4 +232,4 @@ const internQuestions = [
 // }
 
 // // Function call to initialize app
-// init();
+// init()
