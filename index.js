@@ -108,7 +108,7 @@ function engineerQuestions() {
     .prompt([
       {
         type: "input",
-        name: "EngineerName",
+        name: "engineerName",
         message: "What is your Engineer's name?",
       },
 
@@ -218,13 +218,14 @@ function teamMemberAnswer(responses) {
     employeeQuestionsArray.map((result) => {
       console.log(result);
       if (result.getRole() === "Manager") {
-        spec = result.getofficeNumber();
+        spec = "Office Number: " + result.getofficeNumber();
       } else if (result.getRole() === "Engineer") {
-        spec = result.getGitHub();
+        spec = `GitHub Username:<a href="${result.getGitHub()}">${result.getGitHub()}</a>`;
       } else {
-        spec = result.getSchool();
+        spec = "School: " + result.getSchool();
       }
       generatedHTML += `
+      <div class="card" style="width: 18rem">
       <div class="card-body">
           <h5 class="card-title">${result.getName()}</h5>
           <p class="card-text">${result.getRole()}</p>
@@ -232,25 +233,31 @@ function teamMemberAnswer(responses) {
         <ul class="list-group list-group-flush">
           <li class="list-group-item">ID: ${result.getId()}</li>
           <li class="list-group-item">Email: ${result.getEmail()}</li>
-          <li class="list-group-item">OfficeNumber: ${spec}</li>
+          <li class="list-group-item">${spec}</li>
         </ul>
+      </div>
       </div>
       `;
     });
     console.log(generatedHTML);
+    fs.appendFile("./dist/GENERATED.html", generatedHTML, (err) =>
+      err ? console.log(err) : console.log("Success")
+    );
+    theEnd();
   }
 }
-
+function theEnd() {
+  const lastWords = `</div>
+  </main>
+</body>
+</html>`;
+  fs.appendFile("./dist/GENERATED.html", lastWords, (err) =>
+    err ? console.log(err) : console.log("Success")
+  );
+}
 //adding boilerplate stuff from previous homework for outlining
 
 // TODO: Create a function to write GENERATED-README file
-// function writeToFile(fileName, data) {
-//   fs.writeFile(finalGeneratedHtml, data, (err) => {
-//     err
-//       ? console.log(err)
-//       : console.log("index.html file was created and written!");
-//   });
-// }
 
 // // // TODO: Create a function to initialize app
 // function init() {
